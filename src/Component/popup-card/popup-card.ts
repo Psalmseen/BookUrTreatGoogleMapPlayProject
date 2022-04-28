@@ -19,10 +19,12 @@ export class PopupCard extends LitElement {
     }
     .popup-card {
       display: flex;
-      padding: 12px 8px 0 12px;
+      padding: 12px;
+      border-radius: 4px;
       align-items: center;
       gap: 0.5rem;
       width: max-content;
+      background-color: #fff;
     }
     .image-wrapper {
       height: 6rem;
