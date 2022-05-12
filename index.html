@@ -11,13 +11,14 @@
       type="module"
       src="/src/Component/sample-test/sample-test.ts"
     ></script>
+
+    <script type="module" src="./src/index.ts"></script>
   </head>
   <body>
-    <my-element>
-      <p>This is child content</p>
-    </my-element>
-    <google-map></google-map>
+    <h1>
+      Welcome to Lit Element home page a place where can test the vaadin router
+    </h1>
 
-    <sample-element object='{"he":"her"}' value="1"></sample-element>
+    <div id="outlet"></div>
   </body>
 </html>

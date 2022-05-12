@@ -16,6 +16,9 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@types/d3": "^7.1.0",
+    "@vaadin/router": "^1.7.4",
+    "d3": "^7.4.4",
     "lit": "^2.2.2",
     "lit-google-map": "^1.0.0"
   },
