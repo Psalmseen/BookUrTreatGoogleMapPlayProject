@@ -1,5 +1,5 @@
 import { html, LitElement, CSSResultGroup } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, query } from 'lit/decorators.js';
 
 import * as d3 from 'd3';
 import { select } from 'd3-selection';
@@ -14,6 +14,7 @@ export class D3Barchart extends LitElement {
   static styles: CSSResultGroup = d3BarchartStyles;
 
   @property({ type: Number }) timesClicked = 0;
+  @query('svg') svg!: SVGElement;
   @property({ type: Array }) appointments = Array(7)
     .fill('')
     .map((_, i) => {
@@ -58,7 +59,7 @@ export class D3Barchart extends LitElement {
   }
 
   useD3(appointments) {
-    const svg = select(this.shadowRoot).select('svg');
+    const svg = select(this.svg);
     const svgHeight = this.svgHeight;
     const svgWidth = this.svgwidth;
 
@@ -97,7 +98,7 @@ export class D3Barchart extends LitElement {
       .data(appointments)
       .enter()
       .append('text')
-      .text(({ date }) => date)
+      .text(({ date }: { date: string }) => date)
       .attr('y', svgHeight + 50)
       .attr('x', (_, i) => 60 + i * 65)
       .attr('fill', '#1d252d')
@@ -112,7 +113,7 @@ export class D3Barchart extends LitElement {
     const svgHeight = this.svgHeight;
 
     const heightScale = d3.scaleLinear().domain([0, 10]).range([0, svgHeight]);
-    const svg = select(this.shadowRoot).select('svg');
+    const svg = select(this.svg);
     const higherRect = svg
       .selectAll('rect')
       .data(appointments)

@@ -1,45 +1,40 @@
-import { Route, Router } from '@vaadin/router';
+// import { html, LitElement } from 'lit';
+// import { customElement, query } from 'lit/decorators.js';
+// @customElement('script-init')
+// export class ScriptInit extends LitElement {
+//   constructor() {
+//     super();
+//     const s = document.head;
+//     const script = document.createElement('script');
+//     script.src = './src/router';
+//     script.type = 'module';
+//     s.appendChild(script);
+//   }
+//   protected render(): unknown {
+//     return html` <script type="module" src="./src/router"></script>`;
+//   }
+// }
 
-const routes: Route[] = [
-  {
-    path: '/',
-    component: 'my-app',
-    action: async () => {
-      await import('./App');
-    },
-    children: [
-      {
-        path: '',
-        component: 'lit-home',
-        action: async () => {
-          await import('./Component/lit-home');
-        },
-      },
-      {
-        path: 'about',
-        component: 'lit-about',
-        action: async () => {
-          await import('./Component/lit-about');
-        },
-      },
-      {
-        path: 'services',
-        component: 'lit-services',
-        action: async () => {
-          await import('./Component/lit-services');
-        },
-      },
-      {
-        path: 'services/:id',
-        component: 'lit-service',
-        action: async () => {
-          await import('./Component/lit-service');
-        },
-      },
-    ],
-  },
-];
+// const attachScript = () => {
+//   const s = document.head;
+//   const script = document.createElement('script');
+//   script.src = './src/router';
+//   script.type = 'module';
+//   s.appendChild(script);
+// };
+
+// attachScript();
+
+//  ! Load the router in the index.ts
+
+import { Router } from '@vaadin/router';
+import { routes } from './router.js';
+
+window.addEventListener('load', () => {
+  initRouter();
+});
 
 export const router = new Router(document.querySelector('#outlet'));
-
-router.setRoutes(routes);
+function initRouter() {
+  router.setRoutes([...routes]);
+}
